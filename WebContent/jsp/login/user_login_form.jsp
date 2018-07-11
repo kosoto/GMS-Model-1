@@ -10,7 +10,7 @@
 <body>
 	<div class="margin-200-auto text-align width-200 border">
 	<h2 class="text-align">사용자 로그인</h2>	
-		<form action="">
+		<form action="user_login_result.jsp">
 			ID <br>
 			<input type="text" name="user-id" value="ID입력"><br>
 			Pass <br>

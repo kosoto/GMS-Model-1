@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>	
-	<%=new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date()) %>
+	<%= new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date()) %>
 	<table class="margin-auto">
 		<tr class="height-150">
 			<th colspan="2">
@@ -31,7 +31,7 @@
 			</td>
 			<td>
 			<ul>
-				<li><a href="jsp/login/user_login.jsp">사용자로그인</a></li>
+				<li><a href="jsp/login/user_login_form.jsp">사용자로그인</a></li>
 				<li><a href="jsp/login/admin_login.jsp">관리자로그인</a></li>
 				<li><%=c %></li>
 			</ul>			
