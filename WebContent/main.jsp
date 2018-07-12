@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import= "java.text.SimpleDateFormat" %>
 <%@page import= "java.util.Date" %>
-<%!
-	int a = 4, b=5;
-%>
-<% 
-	int c = a+b;
-%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,7 +27,7 @@
 			<ul>
 				<li><a href="jsp/login/user_login_form.jsp">사용자로그인</a></li>
 				<li><a href="jsp/login/admin_login.jsp">관리자로그인</a></li>
-				<li><%=c %></li>
+				<li><a href="jsp/join/join_form.jsp">회원가입</a></li>
 			</ul>			
 			</td>
 		</tr>

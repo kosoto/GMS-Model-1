@@ -12,4 +12,5 @@ public interface MemberService {
 	public void updateMember(MemberBean member);
 	public void deleteMember(MemberBean member);
 	public boolean login(MemberBean member);
+	public String join(MemberBean member);
 }

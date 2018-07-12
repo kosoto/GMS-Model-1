@@ -1,7 +1,6 @@
 package service;
 
 import java.util.List;
-
 import domain.MemberBean;
 import repository.MemberDAOImpl;
 
@@ -50,6 +49,11 @@ public class MemberServiceImpl implements MemberService{
 	public boolean login(MemberBean member) {
 		session =MemberDAOImpl.getInstance().login(member); 
 		return (session!=null);
+	}
+	@Override
+	public String join(MemberBean member) {
+		return MemberDAOImpl.getInstance().join(member);
+		
 	}
 
 }
