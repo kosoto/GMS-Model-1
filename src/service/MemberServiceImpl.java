@@ -55,5 +55,9 @@ public class MemberServiceImpl implements MemberService{
 		return MemberDAOImpl.getInstance().join(member);
 		
 	}
+	@Override
+	public boolean existId(String id) {
+		return MemberDAOImpl.getInstance().existID(id);
+	}
 
 }

@@ -1,7 +1,6 @@
-<%@page import="service.MemberServiceImpl"%>
-<%@page import="service.MemberService"%>
-<%@page import="repository.MemberDAOImpl"%>
-<%@page import="domain.MemberBean"%>
+<%@ page import="service.*"%>
+<%@ page import="repository.*"%>
+<%@ page import="domain.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
@@ -19,5 +18,6 @@
 	String result = MemberServiceImpl.getInstance().join(member);
 	%>
 	<h3><%=result %></h3>
+	<button><a href="../login/user_login_form.jsp">로그인하기</a></button>
 </body>
 </html>

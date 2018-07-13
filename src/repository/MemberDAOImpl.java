@@ -3,7 +3,7 @@ package repository;
 import java.sql.*;
 import java.util.*;
 import domain.*;
-import enums.Vendor;
+import enums.*;
 import factory.*;
 import pool.DBConstant;
 
@@ -11,15 +11,7 @@ public class MemberDAOImpl implements MemberDAO{
 	private static MemberDAO instance = new MemberDAOImpl();
 
 	public static MemberDAO getInstance() {return instance;}
-	private MemberDAOImpl() {
-	  /*stmt = DataBaseFactory.createDataBase(
-		Vendor.ORACLE,
-		DBConstant.USER_NAME,
-		DBConstant.PASSWORD)
-		.getConnection()
-		.createStatement();
-		*/
-	}
+	private MemberDAOImpl() {}
 	@Override
 	public MemberBean insertMember(MemberBean member) {
 		// TODO Auto-generated method stub
@@ -65,15 +57,15 @@ public class MemberDAOImpl implements MemberDAO{
 					DBConstant.PASSWORD)
 					.getConnection()
 					.createStatement().executeQuery(String.format(
-					"SELECT MEM_ID MEMID, "
-							+" TEAM_ID TEAMID, "
-							+" NAME, "
-							+" SSN, "
-							+" ROLL, "
-							+" PASSWORD "
-							+" FROM MEMBER "
-							+" WHERE MEM_ID LIKE '%s' "
-							+" AND PASSWORD LIKE '%s' "
+							"SELECT MEM_ID MEMID, "
+									+" TEAM_ID TEAMID, "
+									+" NAME, "
+									+" SSN, "
+									+" ROLL, "
+									+" PASSWORD "
+									+" FROM MEMBER "
+									+" WHERE MEM_ID LIKE '%s' "
+									+" AND PASSWORD LIKE '%s' "
 							,member.getMemberId(),member.getPass()));			
 			while(rs.next()) {
 				mem = new MemberBean();
@@ -91,42 +83,58 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public String join(MemberBean member) {
 		String result = "";
-		try {	
-			Statement stmt = DataBaseFactory.createDataBase(
+		try {
+			ResultSet rs = DataBaseFactory.createDataBase(
 					Vendor.ORACLE,
 					DBConstant.USER_NAME,
 					DBConstant.PASSWORD)
 					.getConnection()
-					.createStatement();
-			ResultSet rs = stmt.executeQuery(String.format(
-					"SELECT MEM_ID MEMID "+
-					"FROM MEMBER "+
-					"WHERE MEM_ID LIKE '%s'"
-					, member.getMemberId()));
-			if(rs.next()) {
-				//아이디중복
-				result ="아이디가 이미 있습니다.";
-			}else {				
-				stmt.execute(
-						String.format(
-						"INSERT INTO MEMBER "
-						+ "(MEM_ID, NAME, SSN, PASSWORD, AGE) "
-						+ "VALUES "
-						+ "('%s','%s','%s','%s','%d')", 
-						member.getMemberId(),
-						member.getName(),
-						member.getSsn(),
-						member.getPass(),
-						(119-Integer.parseInt(member.getSsn().substring(0, 2)))
-						)
-				);
-				result = "등록 성공";
-			}
+					.createStatement()
+					.executeQuery(
+							String.format(
+							"INSERT INTO MEMBER "
+									+ "(MEM_ID, NAME, SSN, PASSWORD, AGE) "
+									+ "VALUES "
+									+ "('%s','%s','%s','%s','%d')", 
+									member.getMemberId(),
+									member.getName(),
+									member.getSsn(),
+									member.getPass(),
+									(119-Integer.parseInt(member.getSsn().substring(0, 2)))
+									));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 		
 	}
+	@Override
+	public boolean existID(String id) {
+		boolean flag = false;
+		try {
+			flag = DataBaseFactory.createDataBase(
+					Vendor.ORACLE, 
+					DBConstant.USER_NAME, 
+					DBConstant.PASSWORD)
+			.getConnection()
+			.createStatement()
+			.execute(String.format(
+					MemberQuery.EXIST_ID.toString(),
+					id
+					)
+			);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 
 }
+
+
+
+
+
+
+
+

@@ -1,12 +1,12 @@
-package factory;
+package Test;
 
 import java.sql.*;
+import factory.DataBase;
 
-public class Oracle implements DataBase{
+public class TestOracle implements DataBase{
 	private Connection conn;
 	private String driver,url,id,pass;
-	public Oracle(String driver,
-			String url,String id,String pass) {
+	public TestOracle(String driver,String url,String id, String pass) {
 		this.driver=driver;
 		this.url=url;
 		this.id=id;

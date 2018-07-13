@@ -1,7 +1,7 @@
 package domain;
 
 public class MemberBean {
-	private String memberId,TeamId,name,ssn,roll,pass;
+	private String memberId,TeamId,name,ssn,roll,pass,age;
 
 	public String getMemberId() {
 		return memberId;
@@ -51,12 +51,20 @@ public class MemberBean {
 		this.pass = pass;
 	}
 
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberBean [memberId=" + memberId + ", TeamId=" + TeamId + ", name=" + name + ", ssn=" + ssn + ", roll="
-				+ roll + ", pass=" + pass + "]";
+				+ roll + ", pass=" + pass + ", age=" + age + "]";
 	}
-	
+
 	
 	
 }
