@@ -83,49 +83,58 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public String join(MemberBean member) {
 		String result = "";
-		try {
-			ResultSet rs = DataBaseFactory.createDataBase(
-					Vendor.ORACLE,
-					DBConstant.USER_NAME,
-					DBConstant.PASSWORD)
-					.getConnection()
-					.createStatement()
-					.executeQuery(
-							String.format(
-							"INSERT INTO MEMBER "
-									+ "(MEM_ID, NAME, SSN, PASSWORD, AGE) "
-									+ "VALUES "
-									+ "('%s','%s','%s','%s','%d')", 
-									member.getMemberId(),
-									member.getName(),
-									member.getSsn(),
-									member.getPass(),
-									(119-Integer.parseInt(member.getSsn().substring(0, 2)))
-									));
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(!existID(member.getMemberId())) {
+			try {
+				DataBaseFactory.createDataBase(
+						Vendor.ORACLE,
+						DBConstant.USER_NAME,
+						DBConstant.PASSWORD)
+						.getConnection()
+						.createStatement()
+						.executeUpdate(
+								String.format(
+								"INSERT INTO MEMBER "
+										+ "(MEM_ID, NAME, SSN, PASSWORD, AGE) "
+										+ "VALUES "
+										+ "('%s','%s','%s','%s','%d')", 
+										member.getMemberId(),
+										member.getName(),
+										member.getSsn(),
+										member.getPass(),
+										(119-Integer.parseInt(member.getSsn().substring(0, 2)))
+										));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			result = "등록성공";
+		}else{
+			result = "아이디가 이미 있습니다.";
 		}
+		
 		return result;
 		
 	}
 	@Override
 	public boolean existID(String id) {
+		ResultSet rs = null;
 		boolean flag = false;
 		try {
-			flag = DataBaseFactory.createDataBase(
+			rs = DataBaseFactory.createDataBase(
 					Vendor.ORACLE, 
 					DBConstant.USER_NAME, 
 					DBConstant.PASSWORD)
 			.getConnection()
 			.createStatement()
-			.execute(String.format(
+			.executeQuery(String.format(
 					MemberQuery.EXIST_ID.toString(),
 					id
 					)
 			);
+			flag = (rs.next());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("exitID"+flag);
 		return flag;
 	}
 
