@@ -10,39 +10,37 @@ public class MemberServiceImpl implements MemberService{
 	private MemberServiceImpl() {session = new MemberBean();}
 	public static MemberService getInstance() {return instance;}
 
+	
+
 	@Override
-	public void createMember(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+	public List<MemberBean> memberList() {
+		return MemberDAOImpl.getInstance().memberList();
 	}
 
 	@Override
-	public List<MemberBean> list() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MemberBean> findByTeamId(String teamId) {
+		return MemberDAOImpl.getInstance().findByTeamId(teamId);
 	}
 
 	@Override
-	public List<MemberBean> readSome(String word) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public MemberBean readOne(String word) {
-		// TODO Auto-generated method stub
-		return null;
+	public MemberBean findById(String id) {
+		return MemberDAOImpl.getInstance().findById(id);
 	}
 
 	@Override
 	public void updateMember(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+		String pass = member.getPass().split("/")[0];
+		String newPass = member.getPass().split("/")[1];
+		if(!pass.equals(newPass)) {
+			member.setPass(newPass);
+			MemberDAOImpl.getInstance().updateMember(member);
+		}
+		//이전 비번= 새로운 비번일때 메시지 처리
 	}
 
 	@Override
 	public void deleteMember(MemberBean member) {
-		// TODO Auto-generated method stub
+		MemberDAOImpl.getInstance().deleteMember(member);
 		
 	}
 	@Override
@@ -51,13 +49,17 @@ public class MemberServiceImpl implements MemberService{
 		return (session!=null);
 	}
 	@Override
-	public String join(MemberBean member) {
-		return MemberDAOImpl.getInstance().join(member);
+	public String createMember(MemberBean member) {
+		return MemberDAOImpl.getInstance().insertMember(member);
 		
 	}
 	@Override
 	public boolean existId(String id) {
 		return MemberDAOImpl.getInstance().existID(id);
+	}
+	@Override
+	public int countMember() {
+		return MemberDAOImpl.getInstance().countMember();
 	}
 
 }

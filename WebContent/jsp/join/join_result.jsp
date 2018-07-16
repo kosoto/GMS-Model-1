@@ -10,12 +10,12 @@
 </head>
 <body>
 	<%
-	MemberBean member = new MemberBean();
-	member.setMemberId(request.getParameter("user-id"));
-	member.setPass(request.getParameter("pass"));
-	member.setName(request.getParameter("name"));
-	member.setSsn(request.getParameter("ssn"));
-	String result = MemberServiceImpl.getInstance().join(member);
+		MemberBean member = new MemberBean();
+		member.setMemberId(request.getParameter("user-id"));
+		member.setPass(request.getParameter("pass"));
+		member.setName(request.getParameter("name"));
+		member.setSsn(request.getParameter("ssn"));
+		String result = MemberServiceImpl.getInstance().createMember(member);
 	%>
 	<h3><%=result %></h3>
 	<button><a href="../login/user_login_form.jsp">로그인하기</a></button>

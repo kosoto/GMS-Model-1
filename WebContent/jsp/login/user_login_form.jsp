@@ -12,9 +12,9 @@
 	<h2 class="text-align">사용자 로그인</h2>	
 		<form action="user_login_result.jsp">
 			ID <br>
-			<input type="text" name="user-id" value="ID입력"><br>
+			<input type="text" name="user-id" ><br>
 			Pass <br>
-			<input type="text" name="pass" value="비번입력" ><br>
+			<input type="text" name="pass"  ><br>
 			<input type="submit" value="제출">
 		</form><br>
 		<button><a href="../../main.jsp">돌아가기</a></button>

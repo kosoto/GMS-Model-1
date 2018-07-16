@@ -13,13 +13,13 @@
 		<h2 class="text-align">회원가입</h2>
 		<form action="join_result.jsp">
 		ID<br>
-		<input type="text" name="user-id" value="아이디"/><br>
+		<input type="text" name="user-id"/><br>
 		비밀번호<br>
-		<input type="text" name="pass" value="비밀번호"/><br>
+		<input type="text" name="pass" /><br>
 		이름 <br>
-		<input type="text" name="name" value="이름"/><br>
+		<input type="text" name="name"/><br>
 		주민번호<br>
-		<input type="text" name="ssn" value="주민번호"/><br>	
+		<input type="text" name="ssn" /><br>	
 		<input type="submit" value="제출"/>
 		</form>
 	</div>
