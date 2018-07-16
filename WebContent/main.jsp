@@ -36,6 +36,8 @@ count = MemberServiceImpl.getInstance().countMember();
 				<li><a href="jsp/login/admin_login.jsp">관리자로그인</a></li>
 				<li><a href="jsp/join/join_form.jsp">회원가입</a></li>
 				<li><a href="jsp/mypage/member_list.jsp">회원목록</a></li>
+				<li><a href="jsp/mypage/search_team_form.jsp">팀이름검색</a></li>
+				<li><a href="jsp/mypage/search_member_form.jsp">아이디검색</a></li>
 				
 			</ul>			
 			</td>
